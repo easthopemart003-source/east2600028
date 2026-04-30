@@ -89,7 +89,6 @@
             background:#fff;padding:30px;border-radius:10px;text-align:center;width:90%;max-width:420px;
         }
         footer{text-align:center;padding:25px;color:var(--gray);font-size:14px;}
-        /* 修复表格滚动问题 */
         .table-container{overflow-x:auto;}
         .admin-table{width:100%;border-collapse:collapse;margin-top:20px;min-width:700px;}
         .admin-table th,.admin-table td{border:1px solid #ddd;padding:10px;text-align:center;word-break:break-all;}
@@ -104,6 +103,10 @@
         .img-modal img{max-width:90%;max-height:90%;}
         .close-img-btn{
             position:absolute;top:20px;right:20px;color:#fff;font-size:30px;cursor:pointer;
+        }
+        .export-btn{
+            background:#25D366;border:none;color:white;padding:10px 20px;border-radius:6px;
+            font-weight:bold;cursor:pointer;margin-bottom:15px;
         }
     </style>
 </head>
@@ -216,6 +219,12 @@
 <div id="adminModule" class="module">
     <h2 style="text-align:center;color:var(--orange)">Admin Order List</h2>
     <button class="main-btn" style="max-width:200px;margin:20px auto;display:block" onclick="switchModule('home')">Back To Home</button>
+
+    <!-- 新增导出按钮 -->
+    <div style="text-align:center;">
+        <button class="export-btn" onclick="exportAllOrders()">Export All Orders (With Image)</button>
+    </div>
+
     <div class="table-container">
         <table class="admin-table">
             <thead>
@@ -234,7 +243,6 @@
     </div>
 </div>
 
-<!-- 查看大图弹窗 -->
 <div class="img-modal" id="imgModal">
     <span class="close-img-btn" onclick="closeImgModal()">×</span>
     <img id="bigShowImg" src="">
@@ -409,6 +417,47 @@ Order Time: ${new Date().toLocaleString()}`;
 
     function closeModal(){
         document.getElementById("successModal").style.display = "none";
+    }
+
+    // 导出全部订单+图片
+    function exportAllOrders(){
+        let list = getOrderList();
+        if(list.length === 0){
+            alert("No order data");
+            return;
+        }
+        let exportHtml = `<html><head><meta charset="UTF-8"><title>Order Backup With Image</title>
+        <style>body{padding:20px;font-family:Arial;}table{border-collapse:collapse;width:100%;}th,td{border:1px solid #ccc;padding:8px;}img{max-width:100px;}</style></head><body>
+        <h2>All Order Backup - ${new Date().toLocaleString()}</h2>
+        <table><thead>
+        <tr><th>Link</th><th>Name</th><th>Budget</th><th>Shipping</th><th>WhatsApp</th><th>Time</th><th>Image</th></tr>
+        </thead><tbody>`;
+
+        list.forEach(item=>{
+            exportHtml += `<tr>
+                <td>${item.link}</td>
+                <td>${item.name}</td>
+                <td>${item.price}</td>
+                <td>${item.ship}</td>
+                <td>${item.wa}</td>
+                <td>${item.time}</td>
+                <td>${item.img ? '<img src="'+item.img+'">' : 'No Image'}</td>
+            </tr>`;
+        });
+
+        exportHtml += `</tbody></table></body></html>`;
+
+        let blob = new Blob([exportHtml], {type:'text/html'});
+        let url = URL.createObjectURL(blob);
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = `Order_Backup_${Date.now()}.html`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        alert("Export success! File saved to your download folder");
     }
 </script>
 
