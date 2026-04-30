@@ -1,98 +1,58 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easthopemart | Nigeria Purchasing Agent</title>
+    <title data-i18n="site_title">Easthopemart Nigeria Pre-order</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+        * {margin:0;padding:0;box-sizing:border-box;}
+        body {font-family:Arial,sans-serif;background:#fef5f1;}
         :root{
-            --dark-red:#4b1a12;
             --main-red:#e65c3c;
             --main-orange:#ff9547;
-            --light-bg:#fef5f1;
-            --text-color:#333;
+            --dark-red:#4b1a12;
+            --light-bg:#fff3ee;
+            --text-dark:#2d100b;
         }
-        body{background:var(--light-bg);color:var(--text-color);line-height:1.6;}
-
-        /* 头部导航 */
-        header{background:var(--dark-red);padding:15px 5px;text-align:center;}
-        .logo{color:#fff;font-size:26px;font-weight:bold;}
-
-        /* 首屏横幅 */
-        .banner{
-            background:linear-gradient(135deg,var(--main-red),var(--main-orange));
-            color:#fff;
-            text-align:center;
-            padding:60px 20px;
-        }
-        .banner h1{font-size:32px;margin-bottom:15px;}
-        .banner p{font-size:18px;margin-bottom:30px;opacity:0.95;}
-        .btn-whatsapp{
-            display:inline-block;
-            background:#25D366;
-            color:#fff;
-            padding:14px 30px;
-            border-radius:50px;
-            text-decoration:none;
-            font-weight:bold;
-            font-size:17px;
-        }
-
-        /* 通用容器 */
-        .container{max-width:1100px;margin:0 auto;padding:50px 20px;}
-        .section-title{
-            text-align:center;
-            font-size:28px;
-            color:var(--main-red);
-            margin-bottom:40px;
-        }
-
-        /* 服务板块 */
-        .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
-        .service-card{
-            background:#fff;
-            padding:30px 20px;
-            border-radius:10px;
-            text-align:center;
-            box-shadow:0 2px 10px rgba(230,92,60,0.12);
-        }
-        .service-card h3{color:var(--main-orange);margin-bottom:15px;}
-
-        /* 流程板块 */
-        .process-list{max-width:700px;margin:0 auto;}
-        .process-item{
-            background:#fff;
-            margin:15px 0;
-            padding:20px;
-            border-left:5px solid var(--main-red);
-            border-radius:6px;
-        }
-
-        /* 合作平台 */
-        .platform-box{
-            text-align:center;
-            background:#fff;
-            padding:25px;
-            border-radius:10px;
-            margin-top:20px;
-        }
-        .platform-box span{
-            display:inline-block;
-            background:var(--main-orange);
-            color:#fff;
-            padding:8px 20px;
-            margin:8px;
-            border-radius:30px;
-        }
-
-        /* 底部 */
-        footer{
-            background:var(--dark-red);
-            color:#fff;
-            text-align:center;
-            padding:30px 20px;
-            margin-top:30px;
+        header {background:var(--dark-red);padding:16px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+        .logo {color:#fff;font-size:24px;font-weight:bold;}
+        .nav a {color:#fff;text-decoration:none;margin:0 10px;}
+        .nav a.active {color:var(--main-orange);font-weight:bold;}
+        .lang-switch {margin-left:15px;}
+        .lang-switch button {padding:4px 8px;border:none;border-radius:4px;cursor:pointer;background:var(--main-orange);color:#fff;}
+        .hero {text-align:center;padding:50px 20px;}
+        .hero h1 {color:var(--dark-red);margin-bottom:15px;}
+        .hero p {color:#775047;margin-bottom:30px;}
+        .pre-btn {background:linear-gradient(135deg,var(--main-red),var(--main-orange));color:#fff;padding:12px 30px;text-decoration:none;font-weight:bold;border-radius:4px;display:inline-block;margin:20px 0;}
+        .form-box {max-width:700px;margin:40px auto;background:#fff;padding:30px;border-radius:8px;box-shadow:0 2px 12px rgba(230,92,60,0.15);}
+        h3 {color:var(--main-red);margin-bottom:20px;text-align:center;}
+        .tip {color:#99776b;font-size:14px;text-align:center;margin-bottom:15px;}
+        .hint {color:var(--main-red);font-size:14px;margin:6px 0;}
+        input,select,textarea {width:100%;padding:12px;margin:8px 0;border:1px solid #ffdfd3;border-radius:4px;font-size:15px;background:#fffbf8;}
+        textarea {resize:none;height:90px;}
+        .btn-parse {background:var(--main-orange);border:none;padding:12px;width:100%;font-weight:bold;border-radius:4px;cursor:pointer;color:#fff;}
+        .btn-submit {background:var(--main-red);color:#fff;border:none;padding:12px;width:100%;border-radius:4px;cursor:pointer;margin-top:10px;}
+        .btn-submit:disabled {background:#bb705c;cursor:not-allowed;}
+        #preview {margin-top:20px;padding:20px;border:1px solid #ffdfd3;display:none;border-radius:6px;background:var(--light-bg);}
+        #preview img {max-width:200px;border-radius:6px;margin:10px 0;}
+        .loading {color:var(--main-red);text-align:center;margin:12px;display:none;}
+        .rate-panel {background:var(--light-bg);padding:18px;border-radius:8px;margin-bottom:25px;border:1px solid #ffdfd3;}
+        .order-admin {margin-top:35px;padding:20px;background:var(--light-bg);border-radius:8px;border:1px solid #ffdfd3;}
+        .order-item {padding:12px;border-bottom:1px solid #ffdfd3;margin-bottom:12px;font-size:14px;color:var(--text-dark);}
+        .page-section {display:none;}
+        .page-section.active {display:block;}
+        footer {text-align:center;padding:30px;color:#99776b;}
+        .admin-actions {display:flex;gap:10px;margin:15px 0;flex-wrap:wrap;}
+        .btn-export {background:#27ae60;color:#fff;border:none;padding:10px 15px;border-radius:4px;cursor:pointer;}
+        .btn-search {background:var(--main-orange);color:#fff;border:none;padding:10px 15px;border-radius:4px;cursor:pointer;}
+        #searchInput {flex:1;min-width:200px;margin:0;}
+        @media (max-width: 600px) {
+            header {padding:12px;}
+            .nav a {margin:0 5px;font-size:14px;}
+            .form-box {margin:20px;padding:20px;}
+            .admin-actions {flex-direction:column;}
         }
     </style>
 </head>
@@ -100,59 +60,190 @@
 
 <header>
     <div class="logo">Easthopemart</div>
+    <div class="nav">
+        <a href="#" class="page-link active" data-page="home" data-i18n="nav_home">Home</a>
+        <a href="#" class="page-link" data-page="preorder" data-i18n="nav_preorder">Pre-order</a>
+        <a href="#" class="page-link" data-page="shipping" data-i18n="nav_shipping">Shipping</a>
+        <a href="#" class="page-link" data-page="contact" data-i18n="nav_contact">Contact</a>
+        <span class="lang-switch">
+            <button onclick="setLang('en')">EN</button>
+            <button onclick="setLang('zh')">中文</button>
+        </span>
+    </div>
 </header>
 
-<section class="banner">
-    <h1>Nigeria One-Stop Purchasing Agent</h1>
-    <p>Jumia · Konga · Jiji.ng Pre-order & Shipping Service</p>
-    <a href="https://wa.me/8618192962159" class="btn-whatsapp">Contact On WhatsApp Now</a>
+<section id="home" class="page-section active">
+    <div class="hero">
+        <h1 data-i18n="home_h1">Nigeria Local Product Pre-order Service</h1>
+        <p data-i18n="home_p">Jumia / Konga / Jiji.ng — Auto Title & Image Parse</p>
+        <a href="#" class="pre-btn page-link" data-page="preorder" data-i18n="home_btn">Start Pre-order</a>
+    </div>
 </section>
 
-<div class="container">
-    <h2 class="section-title">Our Services</h2>
-    <div class="service-grid">
-        <div class="service-card">
-            <h3>Product Purchasing</h3>
-            <p>Buy all goods from Nigeria local online stores</p>
+<section id="preorder" class="page-section">
+    <div class="form-box" id="orderForm">
+        <div class="rate-panel">
+            <h3 data-i18n="rate_title">Exchange Rate Setting</h3>
+            <input type="text" id="ngnUsdRate" placeholder="NGN to USD Rate" value="0.0013">
+            <input type="text" id="ngnRmbRate" placeholder="NGN to RMB Rate" value="0.0092">
+            <p class="tip" data-i18n="rate_tip">Modify anytime, auto effective immediately</p>
         </div>
-        <div class="service-card">
-            <h3>Pre-order Service</h3>
-            <p>Fast pre-order process with clear NGN & RMB price</p>
+
+        <h3 data-i18n="form_title">Customer Pre-order Form</h3>
+        <p class="tip" data-i18n="form_tip">Only support：jumia.com.ng | konga.com | jiji.ng</p>
+
+        <input type="text" id="productUrl" placeholder="Paste Nigeria product link here">
+        <button class="btn-parse" onclick="fetchProductInfo()" data-i18n="btn_parse">Auto Grab Title & Image</button>
+        <div class="loading" id="parseLoading" data-i18n="loading">Parsing product info, please wait...</div>
+
+        <input type="text" id="productName" placeholder="Product Name (auto filled)" readonly>
+
+        <p class="hint" data-i18n="hint_price">Please fill your expected budget price (NGN)</p>
+        <input type="number" id="customerNgn" placeholder="Your Expected Price NGN">
+
+        <input type="text" id="autoUsd" placeholder="Auto converted USD" readonly>
+        <input type="text" id="autoRmb" placeholder="Auto converted RMB" readonly>
+
+        <select id="shipMethod">
+            <option value="" data-i18n="ship_default">Select Shipping Method</option>
+            <option value="Air Freight" data-i18n="ship_air">Air Freight</option>
+            <option value="Sea Freight" data-i18n="ship_sea">Sea Freight</option>
+            <option value="Door To Door Delivery" data-i18n="ship_d2d">Door To Door Delivery</option>
+            <option value="Warehouse Self Pickup" data-i18n="ship_pickup">Warehouse Self Pickup</option>
+        </select>
+
+        <textarea id="customerRemark" placeholder="Remark: quantity, color, size, model, special request..."></textarea>
+        <input type="text" id="customerWa" placeholder="Your WhatsApp Number">
+
+        <button class="btn-submit" id="submitOrderBtn" onclick="saveCustomerOrder()" data-i18n="btn_submit">Submit Pre-order</button>
+
+        <div id="preview">
+            <h4 data-i18n="preview_title">Order Preview</h4>
+            <div id="previewImg"></div>
+            <p>Product：<span id="previewName"></span></p>
+            <p>Expected NGN：<span id="previewNgn"></span></p>
+            <p>Convert USD：<span id="previewUsd"></span></p>
+            <p>Convert RMB：<span id="previewRmb"></span></p>
         </div>
-        <div class="service-card">
-            <h3>Logistics Support</h3>
-            <p>Air freight · Sea freight · Door to door delivery</p>
-        </div>
-        <div class="service-card">
-            <h3>Full Follow-up</h3>
-            <p>24h online WhatsApp customer support</p>
+
+        <div class="order-admin">
+            <h3 data-i18n="order_records">All Order Records</h3>
+            <div class="admin-actions">
+                <input type="text" id="searchInput" placeholder="Search by product/WhatsApp...">
+                <button class="btn-search" onclick="searchOrders()" data-i18n="btn_search">Search</button>
+                <button class="btn-export" onclick="exportToExcel()" data-i18n="btn_export">Export Excel</button>
+            </div>
+            <div id="orderListBox"></div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="container" style="background:#fff3ee;border-radius:12px;">
-    <h2 class="section-title">Simple Order Process</h2>
-    <div class="process-list">
-        <div class="process-item">1. Send product link from Jumia / Konga / Jiji.ng</div>
-        <div class="process-item">2. We check price and confirm cost</div>
-        <div class="process-item">3. Confirm order and arrange purchase</div>
-        <div class="process-item">4. Shipping update and full delivery service</div>
+<section id="shipping" class="page-section">
+    <div class="form-box">
+        <h3 data-i18n="shipping_title">Shipping Information</h3>
+        <p data-i18n="shipping_p1">We offer 4 shipping methods from China to Nigeria:</p>
+        <ul style="padding-left:20px;margin:15px 0;color:#775047;">
+            <li data-i18n="ship_air">Air Freight: 5-7 days</li>
+            <li data-i18n="ship_sea">Sea Freight: 25-35 days</li>
+            <li data-i18n="ship_d2d">Door To Door: 7-10 days</li>
+            <li data-i18n="ship_pickup">Warehouse Self Pickup: Collect at Lagos warehouse</li>
+        </ul>
     </div>
-</div>
+</section>
 
-<div class="container">
-    <h2 class="section-title">We Support Platforms</h2>
-    <div class="platform-box">
-        <span>Jumia.com.ng</span>
-        <span>Konga.com</span>
-        <span>Jiji.ng</span>
+<section id="contact" class="page-section">
+    <div class="form-box">
+        <h3 data-i18n="contact_title">Contact Us</h3>
+        <p style="color:#775047;margin:8px 0;">WhatsApp: +8618192962159</p>
+        <p style="color:#775047;margin:8px 0;">WeChat: EasthopemartNG</p>
+        <p style="color:#775047;margin:8px 0;">Email: contact@easthopemart.com</p>
     </div>
-</div>
+</section>
 
-<footer>
-    <p>Official Agent Service | Contact: +8618192962159 (WhatsApp)</p>
-    <p style="margin-top:10px;">© 2026 Easthopemart All Rights Reserved</p>
-</footer>
+<footer>© 2026 Easthopemart Nigeria Pre-order System</footer>
+
+<script>
+const translations={
+    en:{site_title:"Easthopemart Nigeria Pre-order",nav_home:"Home",nav_preorder:"Pre-order",nav_shipping:"Shipping",nav_contact:"Contact",home_h1:"Nigeria Local Product Pre-order Service",home_p:"Jumia / Konga / Jiji.ng — Auto Title & Image Parse",home_btn:"Start Pre-order",rate_title:"Exchange Rate Setting",rate_tip:"Modify anytime, auto effective immediately",form_title:"Customer Pre-order Form",form_tip:"Only support：jumia.com.ng | konga.com | jiji.ng",btn_parse:"Auto Grab Title & Image",loading:"Parsing product info, please wait...",hint_price:"Please fill your expected budget price (NGN)",ship_default:"Select Shipping Method",ship_air:"Air Freight",ship_sea:"Sea Freight",ship_d2d:"Door To Door Delivery",ship_pickup:"Warehouse Self Pickup",btn_submit:"Submit Pre-order",preview_title:"Order Preview",order_records:"All Order Records",shipping_title:"Shipping Information",shipping_p1:"We offer 4 shipping methods from China to Nigeria:",contact_title:"Contact Us",contact_p1:"WhatsApp: +8618192962159",contact_p2:"WeChat: EasthopemartNG",contact_p3:"Email: contact@easthopemart.com",btn_search:"Search",btn_export:"Export Excel"},
+    zh:{site_title:"Easthopemart 尼日利亚预购代采",nav_home:"首页",nav_preorder:"预购",nav_shipping:"物流",nav_contact:"联系我们",home_h1:"尼日利亚本地商品预购代采服务",home_p:"支持 Jumia / Konga / Jiji.ng 链接，自动抓取标题和图片",home_btn:"立即预购",rate_title:"汇率设置",rate_tip:"随时修改，立即生效",form_title:"客户预购表单",form_tip:"仅支持：jumia.com.ng | konga.com | jiji.ng",btn_parse:"自动抓取标题和图片",loading:"正在解析商品信息，请稍候...",hint_price:"请填写您的预期预算价格（NGN）",ship_default:"选择物流方式",ship_air:"空运",ship_sea:"海运",ship_d2d:"门到门派送",ship_pickup:"仓库自提",btn_submit:"提交预购",preview_title:"订单预览",order_records:"所有订单记录",shipping_title:"物流信息",shipping_p1:"我们提供4种中国到尼日利亚的物流方式：",contact_title:"联系我们",contact_p1:"WhatsApp: +8618192962159",contact_p2:"微信: EasthopemartNG",contact_p3:"邮箱: contact@easthopemart.com",btn_search:"搜索",btn_export:"导出Excel"}
+};
+let currentLang=localStorage.getItem("lang")||"en";
+function setLang(lang){currentLang=lang;localStorage.setItem("lang",lang);document.querySelectorAll("[data-i18n]").forEach(el=>{const key=el.getAttribute("data-i18n");el.textContent=translations[lang][key]||key;});}
+setLang(currentLang);
+
+document.querySelectorAll(".page-link").forEach(link=>{link.addEventListener("click",e=>{e.preventDefault();const page=link.getAttribute("data-page");document.querySelectorAll(".page-section").forEach(s=>s.classList.remove("active"));document.getElementById(page).classList.add("active");document.querySelectorAll(".nav a").forEach(a=>a.classList.remove("active"));link.classList.add("active");});});
+
+const CONFIG={MY_WA:"8618192962159",MY_WECHAT:"EasthopemartNG",ALLOWED_DOMAINS:["jumia.com.ng","konga.com","jiji.ng"]};
+let allOrderData=JSON.parse(localStorage.getItem('easthopemartOrder'))||[];
+
+function getNowRate(){let u=parseFloat(document.getElementById('ngnUsdRate').value)||0.0013;let r=parseFloat(document.getElementById('ngnRmbRate').value)||0.0092;return{usd:u,rmb:r};}
+function isValidUrl(url){try{const urlObj=new URL(url);return CONFIG.ALLOWED_DOMAINS.some(domain=>urlObj.hostname.includes(domain));}catch(e){return false;}}
+
+async function fetchProductInfo(){
+    let url=document.getElementById('productUrl').value.trim();
+    if(!isValidUrl(url)){alert(currentLang==="zh"?"仅支持 Jumia / Konga / Jiji.ng 链接":"Only support Jumia / Konga / Jiji.ng link");return;}
+    let load=document.getElementById('parseLoading');load.style.display='block';
+    try{
+        let proxyApi=`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+        let res=await fetch(proxyApi);let html=await res.text();
+        let titleMatch=html.match(/<title>([\s\S]+?)<\/title>/i);let title=titleMatch?titleMatch[1].replace(/\s+/g,' ').trim():'Unnamed Product';
+        let imgMatch=html.match(/https?:\/\/[^"]+\.(jpg|png|jpeg)/i);let img=imgMatch?imgMatch[0]:'';
+        document.getElementById('productName').value=title;document.getElementById('previewName').innerText=title;
+        document.getElementById('previewImg').innerHTML=img?`<img src="${img}">`:'';document.getElementById('preview').style.display='block';
+    }catch(e){alert(currentLang==="zh"?"解析失败，请换链接重试":"Parse failed, please change link and try again");}
+    load.style.display='none';
+}
+
+document.getElementById('customerNgn').addEventListener('input',function(){
+    let ngn=parseFloat(this.value);let rate=getNowRate();
+    if(!isNaN(ngn)){
+        let usdVal=(ngn*rate.usd).toFixed(2);let rmbVal=(ngn*rate.rmb).toFixed(2);
+        document.getElementById('autoUsd').value=usdVal;document.getElementById('autoRmb').value=rmbVal;
+        document.getElementById('previewNgn').innerText=ngn+' NGN';document.getElementById('previewUsd').innerText=usdVal+' USD';document.getElementById('previewRmb').innerText=rmbVal+' RMB';
+    }else{document.getElementById('autoUsd').value='';document.getElementById('autoRmb').value='';}
+});
+
+function sendWaNotification(order){
+    let msg=`🔔 NEW PRE-ORDER\nTime: ${order.time}\nLink: ${order.link}\nProduct: ${order.product}\nPrice: ${order.ngn} NGN | ${order.usd} USD | ${order.rmb} RMB\nShipping: ${order.shipping}\nRemark: ${order.remark}\nCustomer WA: ${order.whatsapp}`;
+    let waUrl=`https://wa.me/${CONFIG.MY_WA}?text=${encodeURIComponent(msg)}`;window.open(waUrl,'_blank');
+}
+function sendWechatNotification(order){
+    let msg=`新预购订单\n时间: ${order.time}\n链接: ${order.link}\n商品: ${order.product}\n价格: ${order.ngn} NGN | ${order.usd} USD | ${order.rmb} RMB\n物流: ${order.shipping}\n备注: ${order.remark}\n客户WhatsApp: ${order.whatsapp}`;
+    console.log("微信通知内容（复制发送）:",msg);alert(currentLang==="zh"?"微信通知内容已复制到控制台，打开微信粘贴发送给客服":"WeChat notification copied to console, paste to WeChat");
+}
+
+function saveCustomerOrder(){
+    let url=document.getElementById('productUrl').value.trim();let name=document.getElementById('productName').value.trim();
+    let ngn=document.getElementById('customerNgn').value;let usd=document.getElementById('autoUsd').value;let rmb=document.getElementById('autoRmb').value;
+    let ship=document.getElementById('shipMethod').value;let remark=document.getElementById('customerRemark').value.trim();let wa=document.getElementById('customerWa').value.trim();
+    if(!url||!name||!ngn||!ship||!wa){alert(currentLang==="zh"?"请填写完整信息：链接、预期价格、物流方式、WhatsApp":"Please fill all required items: link, expected price, shipping method, WhatsApp");return;}
+    let submitBtn=document.getElementById('submitOrderBtn');submitBtn.disabled=true;submitBtn.innerText=currentLang==="zh"?"提交中...":"Submitting...";
+    let orderObj={time:new Date().toLocaleString(),link:url,product:name,ngn:ngn,usd:usd,rmb:rmb,shipping:ship,remark:remark||'No Remark',whatsapp:wa};
+    allOrderData.unshift(orderObj);localStorage.setItem('easthopemartOrder',JSON.stringify(allOrderData));
+    renderOrderList();sendWaNotification(orderObj);sendWechatNotification(orderObj);
+    setTimeout(()=>{alert(currentLang==="zh"?"预购提交成功！已自动发送订单通知到您的WhatsApp和微信":"Pre-order submit success! Notifications sent to your WhatsApp and WeChat");submitBtn.disabled=false;submitBtn.innerText=translations[currentLang].btn_submit;},1000);
+}
+
+function renderOrderList(filteredOrders=null){
+    let orders=filteredOrders||allOrderData;let box=document.getElementById('orderListBox');let html='';
+    orders.forEach(item=>{html+=`<div class="order-item"><p>Time：${item.time}</p><p>Link：${item.link}</p><p>Product：${item.product}</p><p>Price：${item.ngn} NGN | ${item.usd} USD | ${item.rmb} RMB</p><p>Shipping：${item.shipping}</p><p>Remark：${item.remark}</p><p>Contact：${item.whatsapp}</p></div>`;});
+    box.innerHTML=html||'<p style="text-align:center;color:#99776b">No orders yet</p>';
+}
+function searchOrders(){
+    let keyword=document.getElementById('searchInput').value.trim().toLowerCase();if(!keyword){renderOrderList();return;}
+    let filtered=allOrderData.filter(order=>order.product.toLowerCase().includes(keyword)||order.whatsapp.toLowerCase().includes(keyword)||order.link.toLowerCase().includes(keyword)));
+    renderOrderList(filtered);
+}
+function exportToExcel(){
+    if(allOrderData.length===0){alert(currentLang==="zh"?"暂无订单可导出":"No orders to export");return;}
+    const headers=["Time","Link","Product","NGN","USD","RMB","Shipping","Remark","WhatsApp"];const data=[headers];
+    allOrderData.forEach(order=>{data.push([order.time,order.link,order.product,order.ngn,order.usd,order.rmb,order.shipping,order.remark,order.whatsapp]);});
+    const wb=XLSX.utils.book_new();const ws=XLSX.utils.aoa_to_sheet(data);XLSX.utils.book_append_sheet(wb,ws,"Orders");
+    XLSX.writeFile(wb,`Pre-order_Orders_${new Date().toISOString().slice(0,10)}.xlsx`);
+}
+renderOrderList();
+</script>
 
 </body>
 </html>
+
