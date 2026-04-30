@@ -14,100 +14,60 @@
             --gray:#555;
             --white:#fff;
             --whatsapp:#25D366;
+            --green:#28a745;
+            --blue:#007bff;
         }
         body{background:var(--light-bg);color:var(--dark);line-height:1.7;}
 
-        .brand-top{
-            text-align:center;padding:12px;font-size:20px;font-weight:bold;
-            background:#fff;color:var(--orange);
-        }
-        .nav-bar{
-            position:sticky;top:0;z-index:99;
-            background:linear-gradient(90deg,var(--red),var(--orange));
-            display:flex;justify-content:center;gap:10px;padding:15px;
-            position:relative;
-        }
-        .nav-btn{
-            padding:10px 25px;border:none;border-radius:6px;
-            font-size:16px;font-weight:bold;cursor:pointer;
-            background:rgba(255,255,255,0.25);color:#fff;
-        }
+        .brand-top{text-align:center;padding:12px;font-size:20px;font-weight:bold;background:#fff;color:var(--orange);}
+        .nav-bar{position:sticky;top:0;z-index:99;background:linear-gradient(90deg,var(--red),var(--orange));display:flex;justify-content:center;gap:10px;padding:15px;position:relative;}
+        .nav-btn{padding:10px 25px;border:none;border-radius:6px;font-size:16px;font-weight:bold;cursor:pointer;background:rgba(255,255,255,0.25);color:#fff;}
         .nav-btn.active{background:#fff;color:var(--orange);}
-        .admin-btn{
-            position:absolute;right:15px;top:12px;padding:6px 12px;
-            background:#fff3;border:none;border-radius:4px;color:#fff;cursor:pointer;
-        }
+        .admin-btn{position:absolute;right:15px;top:12px;padding:6px 12px;background:#fff3;border:none;border-radius:4px;color:#fff;cursor:pointer;}
 
         .module{display:none;padding:20px;max-width:950px;margin:0 auto;}
         .module.active{display:block;}
 
-        .hero{
-            text-align:center;padding:40px 20px;
-            background:linear-gradient(135deg,var(--red),var(--orange));
-            color:#fff;border-radius:12px;margin-bottom:30px;
-        }
+        .hero{text-align:center;padding:40px 20px;background:linear-gradient(135deg,var(--red),var(--orange));color:#fff;border-radius:12px;margin-bottom:30px;}
         .hero h1{font-size:30px;margin-bottom:15px;}
-        .card{
-            background:var(--white);padding:22px;border-radius:10px;
-            box-shadow:0 3px 12px rgba(0,0,0,0.08);margin-bottom:20px;
-        }
-        .platform-list{
-            display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:25px 0;
-        }
-        .platform-item{
-            padding:10px 20px;background:linear-gradient(90deg,var(--red),var(--orange));
-            color:#fff;border-radius:6px;font-weight:bold;
-        }
-        .btn-wa{
-            display:inline-block;padding:12px 25px;
-            background:var(--whatsapp);color:#fff;border-radius:8px;
-            text-decoration:none;font-weight:bold;margin:8px;
-        }
+        .card{background:var(--white);padding:22px;border-radius:10px;box-shadow:0 3px 12px rgba(0,0,0,0.08);margin-bottom:20px;}
+        .platform-list{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:25px 0;}
+        .platform-item{padding:10px 20px;background:linear-gradient(90deg,var(--red),var(--orange));color:#fff;border-radius:6px;font-weight:bold;}
+        .btn-wa{display:inline-block;padding:12px 25px;background:var(--whatsapp);color:#fff;border-radius:8px;text-decoration:none;font-weight:bold;margin:8px;}
 
         .form-group{margin-bottom:20px;}
         label{display:block;margin-bottom:8px;font-weight:bold;}
-        input,select,textarea{
-            width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:15px;
-        }
-        .main-btn{
-            width:100%;padding:14px;border:none;border-radius:8px;
-            background:linear-gradient(90deg,var(--red),var(--orange));
-            color:#fff;font-weight:bold;font-size:16px;cursor:pointer;
-        }
-        .upload-box{
-            border:2px dashed #ccc;padding:20px;text-align:center;border-radius:8px;
-        }
+        input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:15px;}
+        .main-btn{width:100%;padding:14px;border:none;border-radius:8px;background:linear-gradient(90deg,var(--red),var(--orange));color:#fff;font-weight:bold;font-size:16px;cursor:pointer;}
+        .upload-box{border:2px dashed #ccc;padding:20px;text-align:center;border-radius:8px;}
         #previewImg{max-width:140px;margin-top:12px;display:none;border-radius:6px;}
-        .preview-box{
-            display:none;border:1px solid var(--orange);padding:20px;border-radius:10px;margin-top:20px;
-        }
-        .modal{
-            position:fixed;top:0;left:0;width:100%;height:100%;
-            background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:200;
-        }
-        .modal-content{
-            background:#fff;padding:30px;border-radius:10px;text-align:center;width:90%;max-width:420px;
-        }
+        .preview-box{display:none;border:1px solid var(--orange);padding:20px;border-radius:10px;margin-top:20px;}
+
+        .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:200;}
+        .modal-content{background:#fff;padding:30px;border-radius:10px;text-align:center;width:90%;max-width:420px;}
         footer{text-align:center;padding:25px;color:var(--gray);font-size:14px;}
         .table-container{overflow-x:auto;}
-        .admin-table{width:100%;border-collapse:collapse;margin-top:20px;min-width:700px;}
-        .admin-table th,.admin-table td{border:1px solid #ddd;padding:10px;text-align:center;word-break:break-all;}
+        .admin-table{width:100%;border-collapse:collapse;margin-top:20px;min-width:800px;}
+        .admin-table th,.admin-table td{border:1px solid #ddd;padding:8px;text-align:center;word-break:break-all;font-size:13px;}
         .tip-text{color:var(--red);font-weight:bold;margin:15px 0;line-height:1.8;}
-        .view-img-btn{
-            padding:4px 8px;background:var(--orange);color:#fff;border:none;border-radius:4px;cursor:pointer;
-        }
-        .img-modal{
-            position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;
-            display:none;align-items:center;justify-content:center;z-index:300;
-        }
+
+        .img-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;display:none;align-items:center;justify-content:center;z-index:300;}
         .img-modal img{max-width:90%;max-height:90%;}
-        .close-img-btn{
-            position:absolute;top:20px;right:20px;color:#fff;font-size:30px;cursor:pointer;
-        }
-        .export-btn{
-            background:#25D366;border:none;color:white;padding:10px 20px;border-radius:6px;
-            font-weight:bold;cursor:pointer;margin-bottom:15px;
-        }
+        .close-img-btn{position:absolute;top:20px;right:20px;color:#fff;font-size:30px;cursor:pointer;}
+
+        .export-btn{background:#25D366;border:none;color:white;padding:10px 20px;border-radius:6px;font-weight:bold;cursor:pointer;margin:0 5px 15px;}
+        .clear-all-btn{background:#dc3545;border:none;color:white;padding:10px 20px;border-radius:6px;font-weight:bold;cursor:pointer;margin:0 5px 15px;}
+
+        .stat-box{display:flex;gap:10px;justify-content:center;margin-bottom:15px;flex-wrap:wrap;}
+        .stat-item{padding:10px 20px;border-radius:8px;color:#fff;font-weight:bold;}
+        .stat-all{background:var(--blue);}
+        .stat-new{background:var(--orange);}
+        .stat-done{background:var(--green);}
+
+        .search-input{max-width:600px;margin:0 auto 15px;display:block;padding:10px;border-radius:8px;border:1px solid #ddd;}
+        .status-select{padding:3px;border-radius:4px;border:1px solid #ccc;}
+        .del-btn{background:#dc3545;color:#fff;border:none;padding:3px 6px;border-radius:3px;cursor:pointer;}
+        .table-thumb{max-width:60px;border-radius:4px;cursor:pointer;}
     </style>
 </head>
 <body>
@@ -127,28 +87,24 @@
         <p>Safe Payment · Simple Form · Fast Reply</p>
         <a href="https://wa.me/2347031182775" target="_blank" class="btn-wa">Chat Support Now</a>
     </div>
-
     <div class="card">
         <h3>Our Service</h3>
         <p>We help you order any products from Jumia, Konga, Jiji.ng. Fill simple form, submit your request.</p>
     </div>
-
     <h3 style="text-align:center;color:var(--orange);margin:20px 0;">Supported Platforms</h3>
     <div class="platform-list">
         <div class="platform-item">jumia.com.ng</div>
         <div class="platform-item">konga.com</div>
         <div class="platform-item">jiji.ng</div>
     </div>
-
     <div class="card">
         <h3>How To Order</h3>
         <p>1. Copy product link & save product image</p>
         <p>2. Fill all details in order form</p>
         <p>3. Upload your product picture</p>
-        <p>4. Submit order, simply send the picture to our WhatsApp</p>
+        <p>4. Submit order, simply send your product image to our WhatsApp</p>
     </div>
-
-    <footer>© 2026 Easthopemart Nigeria Pre-Order Service | All Rights Reserved</footer>
+    <footer>© 2026 Easthopemart Nigeria Pre-Order Service</footer>
 </div>
 
 <div id="orderModule" class="module">
@@ -159,7 +115,6 @@
         <label>1. Product Link</label>
         <input type="text" id="linkInput" placeholder="Paste Jumia / Konga / Jiji product link here">
     </div>
-
     <div class="form-group">
         <label>2. Upload Product Image</label>
         <div class="upload-box">
@@ -168,17 +123,14 @@
         </div>
         <img id="previewImg">
     </div>
-
     <div class="form-group">
         <label>3. Product Name</label>
         <input type="text" id="nameInput" placeholder="Write product full name">
     </div>
-
     <div class="form-group">
         <label>4. Expected Budget (NGN)</label>
         <input type="number" id="priceInput" placeholder="Example: 25000">
     </div>
-
     <div class="form-group">
         <label>5. Shipping Method</label>
         <select id="shipMethod">
@@ -188,19 +140,16 @@
             <option>Warehouse Self Pickup</option>
         </select>
     </div>
-
     <div class="form-group">
         <label>6. Remark (Quantity / Color / Size)</label>
         <textarea id="remarkInput" rows="3" placeholder="Write your request here"></textarea>
     </div>
-
     <div class="form-group">
         <label>7. Your WhatsApp Number</label>
         <input type="text" id="waInput" placeholder="+234xxxxxxxx">
     </div>
 
     <button class="main-btn" onclick="openPreview()">Preview Pre-Order</button>
-
     <div class="preview-box" id="orderPreview">
         <h3 style="color:var(--orange)">Pre-Order Preview</h3>
         <img id="preImg" style="max-width:140px;border-radius:6px;display:none;margin:10px 0;">
@@ -212,7 +161,6 @@
         <p>Your WhatsApp: <span id="preWa"></span></p>
         <button class="main-btn" style="margin-top:15px" onclick="submitOrder()">Submit Now</button>
     </div>
-
     <footer style="margin-top:40px;">© 2026 Easthopemart Pre-Order System</footer>
 </div>
 
@@ -220,9 +168,17 @@
     <h2 style="text-align:center;color:var(--orange)">Admin Order List</h2>
     <button class="main-btn" style="max-width:200px;margin:20px auto;display:block" onclick="switchModule('home')">Back To Home</button>
 
-    <!-- 新增导出按钮 -->
+    <div class="stat-box">
+        <div class="stat-item stat-all">Total: <span id="statAll">0</span></div>
+        <div class="stat-item stat-new">New: <span id="statNew">0</span></div>
+        <div class="stat-item stat-done">Completed: <span id="statDone">0</span></div>
+    </div>
+
+    <input class="search-input" id="searchKey" placeholder="Search WhatsApp / Name / Link" oninput="renderAdminTable()">
+
     <div style="text-align:center;">
-        <button class="export-btn" onclick="exportAllOrders()">Export All Orders (With Image)</button>
+        <button class="export-btn" onclick="exportAllOrders()">Export All With Image</button>
+        <button class="clear-all-btn" onclick="clearAllOrder()">Clear All Orders</button>
     </div>
 
     <div class="table-container">
@@ -233,9 +189,11 @@
                     <th>Name</th>
                     <th>Budget</th>
                     <th>Shipping</th>
-                    <th>Customer WhatsApp</th>
-                    <th>Order Time</th>
+                    <th>WhatsApp</th>
+                    <th>Time</th>
+                    <th>Status</th>
                     <th>Image</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody id="orderListBody"></tbody>
@@ -261,7 +219,7 @@
         <h3>Submit Success !</h3>
         <div class="tip-text">
             Order details sent successfully<br>
-            Please simply send your product image to us on WhatsApp
+            Please send product image to us on WhatsApp
         </div>
         <a href="https://wa.me/2347031182775" target="_blank" class="btn-wa">Open WhatsApp Now</a>
         <br>
@@ -272,16 +230,13 @@
 <script>
     const adminPwd = "123456";
     const MY_WA_NUMBER = "2347031182775";
-    let imgBase64 = "";
     let tempImgUrl = "";
 
     function getOrderList(){
         let list = localStorage.getItem("nigeriaOrder");
         return list ? JSON.parse(list) : [];
     }
-    function saveOrder(data){
-        let arr = getOrderList();
-        arr.push(data);
+    function saveOrder(arr){
         localStorage.setItem("nigeriaOrder",JSON.stringify(arr));
     }
 
@@ -313,10 +268,28 @@
         }
     }
 
+    // 渲染后台表格 + 搜索 + 统计 + 缩略图 + 状态修改 + 删除
     function renderAdminTable(){
         let list = getOrderList();
+        let key = document.getElementById("searchKey").value.toLowerCase();
+
+        let filterList = list.filter(item=>{
+            return item.wa.toLowerCase().includes(key)
+                || item.name.toLowerCase().includes(key)
+                || item.link.toLowerCase().includes(key);
+        });
+
+        let total = filterList.length;
+        let newNum = filterList.filter(x=>x.status==="New").length;
+        let doneNum = filterList.filter(x=>x.status==="Completed").length;
+
+        document.getElementById("statAll").innerText = total;
+        document.getElementById("statNew").innerText = newNum;
+        document.getElementById("statDone").innerText = doneNum;
+
         let html = "";
-        list.forEach((item,idx)=>{
+        filterList.forEach((item,idx)=>{
+            let realIndex = list.findIndex(x=>x.time===item.time&&x.wa===item.wa);
             html += `<tr>
                 <td>${item.link}</td>
                 <td>${item.name}</td>
@@ -324,13 +297,44 @@
                 <td>${item.ship}</td>
                 <td>${item.wa}</td>
                 <td>${item.time}</td>
-                <td>${item.img ? '<button class="view-img-btn" onclick="showAdminImg(\''+item.img+'\')">View</button>' : 'No Image'}</td>
+                <td>
+                    <select class="status-select" onchange="changeStatus(${realIndex},this.value)">
+                        <option ${item.status==="New"?"selected":""}>New</option>
+                        <option ${item.status==="Processing"?"selected":""}>Processing</option>
+                        <option ${item.status==="Completed"?"selected":""}>Completed</option>
+                    </select>
+                </td>
+                <td>
+                    ${item.img ? `<img src="${item.img}" class="table-thumb" onclick="showBigImg('${item.img}')">` : 'No Img'}
+                </td>
+                <td><button class="del-btn" onclick="delOneOrder(${realIndex})">Delete</button></td>
             </tr>`;
         });
         document.getElementById("orderListBody").innerHTML = html;
     }
 
-    function showAdminImg(base64){
+    function changeStatus(index,val){
+        let arr = getOrderList();
+        arr[index].status = val;
+        saveOrder(arr);
+        renderAdminTable();
+    }
+
+    function delOneOrder(index){
+        if(!confirm("Delete this order?"))return;
+        let arr = getOrderList();
+        arr.splice(index,1);
+        saveOrder(arr);
+        renderAdminTable();
+    }
+
+    function clearAllOrder(){
+        if(!confirm("Are you sure to clear ALL orders?"))return;
+        localStorage.removeItem("nigeriaOrder");
+        renderAdminTable();
+    }
+
+    function showBigImg(base64){
         document.getElementById("bigShowImg").src = base64;
         document.getElementById("imgModal").style.display = "flex";
     }
@@ -343,10 +347,9 @@
         if(!file) return;
         let reader = new FileReader();
         reader.onload = function(ev){
-            imgBase64 = ev.target.result;
             tempImgUrl = ev.target.result;
             let preImg = document.getElementById("previewImg");
-            preImg.src = imgBase64;
+            preImg.src = tempImgUrl;
             preImg.style.display = "block";
         }
         reader.readAsDataURL(file);
@@ -364,12 +367,11 @@
             alert("Please fill all required fields");
             return;
         }
-
         document.getElementById("preLink").innerText = link;
         document.getElementById("preName").innerText = name;
         document.getElementById("prePrice").innerText = price;
         document.getElementById("preShip").innerText = ship;
-        document.getElementById("preRemark").innerText = remark || "No remark";
+        document.getElementById("preRemark").innerText = remark||"None";
         document.getElementById("preWa").innerText = wa;
 
         let preImg = document.getElementById("preImg");
@@ -379,9 +381,7 @@
         }else{
             preImg.style.display = "none";
         }
-
         document.getElementById("orderPreview").style.display = "block";
-        document.getElementById("orderPreview").scrollIntoView({behavior:"smooth"});
     }
 
     function submitOrder(){
@@ -392,25 +392,18 @@
         let remark = document.getElementById("remarkInput").value.trim();
         let wa = document.getElementById("waInput").value.trim();
 
+        let arr = getOrderList();
         let orderData = {
-            link, name, price, ship, remark, wa,
+            link,name,price,ship,remark,wa,
             time:new Date().toLocaleString(),
-            img: tempImgUrl
+            img: tempImgUrl,
+            status:"New"
         };
-        saveOrder(orderData);
+        arr.push(orderData);
+        saveOrder(arr);
 
-        let orderMsg = `New Customer Order
--------------------
-Product Link: ${link}
-Product Name: ${name}
-Budget: ${price} NGN
-Shipping: ${ship}
-Remark: ${remark||"None"}
-Customer WhatsApp: ${wa}
-Order Time: ${new Date().toLocaleString()}`;
-
-        let waUrl = `https://wa.me/${MY_WA_NUMBER}?text=${encodeURIComponent(orderMsg)}`;
-        window.open(waUrl, "_blank");
+        let msg = `【NEW ORDER】\nProduct: ${name}\nLink: ${link}\nBudget: ${price} NGN\nShip: ${ship}\nRemark: ${remark||"None"}\nCustomer WA: ${wa}\nTime: ${new Date().toLocaleString()}`;
+        window.open(`https://wa.me/${MY_WA_NUMBER}?text=${encodeURIComponent(msg)}`,"_blank");
 
         document.getElementById("successModal").style.display = "flex";
     }
@@ -419,45 +412,33 @@ Order Time: ${new Date().toLocaleString()}`;
         document.getElementById("successModal").style.display = "none";
     }
 
-    // 导出全部订单+图片
     function exportAllOrders(){
         let list = getOrderList();
-        if(list.length === 0){
-            alert("No order data");
-            return;
-        }
-        let exportHtml = `<html><head><meta charset="UTF-8"><title>Order Backup With Image</title>
-        <style>body{padding:20px;font-family:Arial;}table{border-collapse:collapse;width:100%;}th,td{border:1px solid #ccc;padding:8px;}img{max-width:100px;}</style></head><body>
-        <h2>All Order Backup - ${new Date().toLocaleString()}</h2>
+        if(list.length===0){alert("No order data");return;}
+        let html = `<html><head><meta charset="UTF-8"><title>Order Backup</title>
+        <style>body{padding:20px;font-family:Arial;}table{border-collapse:collapse;width:100%;}th,td{border:1px solid #ccc;padding:8px;}img{max-width:80px;}</style></head><body>
+        <h2>Order Backup ${new Date().toLocaleString()}</h2>
         <table><thead>
-        <tr><th>Link</th><th>Name</th><th>Budget</th><th>Shipping</th><th>WhatsApp</th><th>Time</th><th>Image</th></tr>
-        </thead><tbody>`;
-
+        <tr><th>Link</th><th>Name</th><th>Budget</th><th>Shipping</th><th>WhatsApp</th><th>Time</th><th>Status</th><th>Image</th></tr></thead><tbody>`;
         list.forEach(item=>{
-            exportHtml += `<tr>
+            html += `<tr>
                 <td>${item.link}</td>
                 <td>${item.name}</td>
                 <td>${item.price}</td>
                 <td>${item.ship}</td>
                 <td>${item.wa}</td>
                 <td>${item.time}</td>
-                <td>${item.img ? '<img src="'+item.img+'">' : 'No Image'}</td>
+                <td>${item.status}</td>
+                <td>${item.img?'<img src="'+item.img+'">':'No Img'}</td>
             </tr>`;
         });
-
-        exportHtml += `</tbody></table></body></html>`;
-
-        let blob = new Blob([exportHtml], {type:'text/html'});
+        html += `</tbody></table></body></html>`;
+        let blob = new Blob([html],{type:"text/html"});
         let url = URL.createObjectURL(blob);
-        let a = document.createElement('a');
+        let a = document.createElement("a");
         a.href = url;
         a.download = `Order_Backup_${Date.now()}.html`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        alert("Export success! File saved to your download folder");
+        document.body.appendChild(a);a.click();document.body.removeChild(a);
     }
 </script>
 
