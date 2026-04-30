@@ -89,7 +89,9 @@
             background:#fff;padding:30px;border-radius:10px;text-align:center;width:90%;max-width:420px;
         }
         footer{text-align:center;padding:25px;color:var(--gray);font-size:14px;}
-        .admin-table{width:100%;border-collapse:collapse;margin-top:20px;}
+        /* 修复表格滚动问题 */
+        .table-container{overflow-x:auto;}
+        .admin-table{width:100%;border-collapse:collapse;margin-top:20px;min-width:700px;}
         .admin-table th,.admin-table td{border:1px solid #ddd;padding:10px;text-align:center;word-break:break-all;}
         .tip-text{color:var(--red);font-weight:bold;margin:15px 0;line-height:1.8;}
         .view-img-btn{
@@ -214,20 +216,22 @@
 <div id="adminModule" class="module">
     <h2 style="text-align:center;color:var(--orange)">Admin Order List</h2>
     <button class="main-btn" style="max-width:200px;margin:20px auto;display:block" onclick="switchModule('home')">Back To Home</button>
-    <table class="admin-table">
-        <thead>
-            <tr>
-                <th>Link</th>
-                <th>Name</th>
-                <th>Budget</th>
-                <th>Shipping</th>
-                <th>Customer WhatsApp</th>
-                <th>Order Time</th>
-                <th>Image</th>
-            </tr>
-        </thead>
-        <tbody id="orderListBody"></tbody>
-    </table>
+    <div class="table-container">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Link</th>
+                    <th>Name</th>
+                    <th>Budget</th>
+                    <th>Shipping</th>
+                    <th>Customer WhatsApp</th>
+                    <th>Order Time</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody id="orderListBody"></tbody>
+        </table>
+    </div>
 </div>
 
 <!-- 查看大图弹窗 -->
