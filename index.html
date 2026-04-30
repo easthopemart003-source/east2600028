@@ -38,7 +38,7 @@
             background:#fff3;border:none;border-radius:4px;color:#fff;cursor:pointer;
         }
 
-        .module{display:none;padding:20px;max-width:900px;margin:0 auto;}
+        .module{display:none;padding:20px;max-width:950px;margin:0 auto;}
         .module.active{display:block;}
 
         .hero{
@@ -92,6 +92,17 @@
         .admin-table{width:100%;border-collapse:collapse;margin-top:20px;}
         .admin-table th,.admin-table td{border:1px solid #ddd;padding:10px;text-align:center;word-break:break-all;}
         .tip-text{color:var(--red);font-weight:bold;margin:15px 0;line-height:1.8;}
+        .view-img-btn{
+            padding:4px 8px;background:var(--orange);color:#fff;border:none;border-radius:4px;cursor:pointer;
+        }
+        .img-modal{
+            position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;
+            display:none;align-items:center;justify-content:center;z-index:300;
+        }
+        .img-modal img{max-width:90%;max-height:90%;}
+        .close-img-btn{
+            position:absolute;top:20px;right:20px;color:#fff;font-size:30px;cursor:pointer;
+        }
     </style>
 </head>
 <body>
@@ -109,12 +120,12 @@
         <h1>Reliable Nigeria Pre-Order Agent</h1>
         <p>Jumia · Konga · Jiji.ng Pre-Order & Shipping Solution</p>
         <p>Safe Payment · Simple Form · Fast Reply</p>
-        <a href="httpswa.me/2347031182775" target="_blank" class="btn-wa">Chat Support Now</a>
+        <a href="https://wa.me/2347031182775" target="_blank" class="btn-wa">Chat Support Now</a>
     </div>
 
     <div class="card">
         <h3>Our Service</h3>
-        <p>We help you order any products from Jumia, Konga, Jiji.ng. Fill simple form, submit your request, we will contact you soon.</p>
+        <p>We help you order any products from Jumia, Konga, Jiji.ng. Fill simple form, submit your request.</p>
     </div>
 
     <h3 style="text-align:center;color:var(--orange);margin:20px 0;">Supported Platforms</h3>
@@ -126,10 +137,10 @@
 
     <div class="card">
         <h3>How To Order</h3>
-        <p>1. Copy product link and save product image</p>
-        <p>2. Fill all information in pre-order form</p>
+        <p>1. Copy product link & save product image</p>
+        <p>2. Fill all details in order form</p>
         <p>3. Upload your product picture</p>
-        <p>4. Submit order, send picture to our WhatsApp</p>
+        <p>4. Submit order, simply send the picture to our WhatsApp</p>
     </div>
 
     <footer>© 2026 Easthopemart Nigeria Pre-Order Service | All Rights Reserved</footer>
@@ -212,10 +223,17 @@
                 <th>Shipping</th>
                 <th>Customer WhatsApp</th>
                 <th>Order Time</th>
+                <th>Image</th>
             </tr>
         </thead>
         <tbody id="orderListBody"></tbody>
     </table>
+</div>
+
+<!-- 查看大图弹窗 -->
+<div class="img-modal" id="imgModal">
+    <span class="close-img-btn" onclick="closeImgModal()">×</span>
+    <img id="bigShowImg" src="">
 </div>
 
 <div class="modal" id="loginModal">
@@ -230,9 +248,8 @@
     <div class="modal-content">
         <h3>Submit Success !</h3>
         <div class="tip-text">
-            Please send the product image you uploaded<br>
-            to our WhatsApp manually<br>
-            Thank you !
+            Order details sent successfully<br>
+            Please simply send your product image to us on WhatsApp
         </div>
         <a href="https://wa.me/2347031182775" target="_blank" class="btn-wa">Open WhatsApp Now</a>
         <br>
@@ -242,9 +259,9 @@
 
 <script>
     const adminPwd = "123456";
-    // 你的WhatsApp号码
     const MY_WA_NUMBER = "2347031182775";
     let imgBase64 = "";
+    let tempImgUrl = "";
 
     function getOrderList(){
         let list = localStorage.getItem("nigeriaOrder");
@@ -287,7 +304,7 @@
     function renderAdminTable(){
         let list = getOrderList();
         let html = "";
-        list.forEach(item=>{
+        list.forEach((item,idx)=>{
             html += `<tr>
                 <td>${item.link}</td>
                 <td>${item.name}</td>
@@ -295,18 +312,27 @@
                 <td>${item.ship}</td>
                 <td>${item.wa}</td>
                 <td>${item.time}</td>
+                <td>${item.img ? '<button class="view-img-btn" onclick="showAdminImg(\''+item.img+'\')">View</button>' : 'No Image'}</td>
             </tr>`;
         });
         document.getElementById("orderListBody").innerHTML = html;
     }
 
-    // 上传图片预览
+    function showAdminImg(base64){
+        document.getElementById("bigShowImg").src = base64;
+        document.getElementById("imgModal").style.display = "flex";
+    }
+    function closeImgModal(){
+        document.getElementById("imgModal").style.display = "none";
+    }
+
     function showImgPreview(e){
         let file = e.target.files[0];
         if(!file) return;
         let reader = new FileReader();
         reader.onload = function(ev){
             imgBase64 = ev.target.result;
+            tempImgUrl = ev.target.result;
             let preImg = document.getElementById("previewImg");
             preImg.src = imgBase64;
             preImg.style.display = "block";
@@ -335,8 +361,8 @@
         document.getElementById("preWa").innerText = wa;
 
         let preImg = document.getElementById("preImg");
-        if(imgBase64){
-            preImg.src = imgBase64;
+        if(tempImgUrl){
+            preImg.src = tempImgUrl;
             preImg.style.display = "block";
         }else{
             preImg.style.display = "none";
@@ -354,14 +380,13 @@
         let remark = document.getElementById("remarkInput").value.trim();
         let wa = document.getElementById("waInput").value.trim();
 
-        // 保存订单到后台
         let orderData = {
             link, name, price, ship, remark, wa,
-            time:new Date().toLocaleString()
+            time:new Date().toLocaleString(),
+            img: tempImgUrl
         };
         saveOrder(orderData);
 
-        // 发给你的WhatsApp 清爽文字模板
         let orderMsg = `New Customer Order
 -------------------
 Product Link: ${link}
@@ -372,11 +397,9 @@ Remark: ${remark||"None"}
 Customer WhatsApp: ${wa}
 Order Time: ${new Date().toLocaleString()}`;
 
-        // 自动跳转WhatsApp 填好文字
         let waUrl = `https://wa.me/${MY_WA_NUMBER}?text=${encodeURIComponent(orderMsg)}`;
         window.open(waUrl, "_blank");
 
-        // 弹出提示：让客户手动发图片
         document.getElementById("successModal").style.display = "flex";
     }
 
