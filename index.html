@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easthopemart | Nigeria Pre-Order Agent Service</title>
+    <title>Easthopemart | Nigeria Pre-Order</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
         :root{
@@ -77,7 +77,7 @@
         .upload-box{
             border:2px dashed #ccc;padding:20px;text-align:center;border-radius:8px;
         }
-        #previewImg{max-width:120px;margin-top:10px;display:none;border-radius:6px;}
+        #previewImg{max-width:140px;margin-top:12px;display:none;border-radius:6px;}
         .preview-box{
             display:none;border:1px solid var(--orange);padding:20px;border-radius:10px;margin-top:20px;
         }
@@ -86,12 +86,12 @@
             background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:200;
         }
         .modal-content{
-            background:#fff;padding:30px;border-radius:10px;text-align:center;width:90%;max-width:400px;
+            background:#fff;padding:30px;border-radius:10px;text-align:center;width:90%;max-width:420px;
         }
         footer{text-align:center;padding:25px;color:var(--gray);font-size:14px;}
-        .faq-item{padding:12px;border-bottom:1px solid #eee;}
         .admin-table{width:100%;border-collapse:collapse;margin-top:20px;}
         .admin-table th,.admin-table td{border:1px solid #ddd;padding:10px;text-align:center;word-break:break-all;}
+        .tip-text{color:var(--red);font-weight:bold;margin:15px 0;line-height:1.8;}
     </style>
 </head>
 <body>
@@ -109,7 +109,7 @@
         <h1>Reliable Nigeria Pre-Order Agent</h1>
         <p>Jumia · Konga · Jiji.ng Pre-Order & Shipping Solution</p>
         <p>Safe Payment · Simple Form · Fast Reply</p>
-        <a href="https://wa.me/2347031182775" target="_blank" class="btn-wa">Chat Support Now</a>
+        <a href="httpswa.me/2347031182775" target="_blank" class="btn-wa">Chat Support Now</a>
     </div>
 
     <div class="card">
@@ -126,10 +126,10 @@
 
     <div class="card">
         <h3>How To Order</h3>
-        <p>1. Copy product link and product picture</p>
-        <p>2. Fill simple pre-order form</p>
-        <p>3. Choose shipping method</p>
-        <p>4. Submit, we contact you on WhatsApp</p>
+        <p>1. Copy product link and save product image</p>
+        <p>2. Fill all information in pre-order form</p>
+        <p>3. Upload your product picture</p>
+        <p>4. Submit order, send picture to our WhatsApp</p>
     </div>
 
     <footer>© 2026 Easthopemart Nigeria Pre-Order Service | All Rights Reserved</footer>
@@ -145,10 +145,10 @@
     </div>
 
     <div class="form-group">
-        <label>2. Upload Product Image / Paste Screenshot</label>
+        <label>2. Upload Product Image</label>
         <div class="upload-box">
             <input type="file" id="imgUpload" accept="image/*" onchange="showImgPreview(event)">
-            <p style="margin-top:8px;">You can upload picture or copy paste screenshot</p>
+            <p style="margin-top:8px;">Upload or screenshot product picture</p>
         </div>
         <img id="previewImg">
     </div>
@@ -187,7 +187,7 @@
 
     <div class="preview-box" id="orderPreview">
         <h3 style="color:var(--orange)">Pre-Order Preview</h3>
-        <img id="preImg" style="max-width:120px;border-radius:6px;display:none;">
+        <img id="preImg" style="max-width:140px;border-radius:6px;display:none;margin:10px 0;">
         <p>Product Link: <span id="preLink"></span></p>
         <p>Product Name: <span id="preName"></span></p>
         <p>Budget NGN: <span id="prePrice"></span></p>
@@ -210,8 +210,8 @@
                 <th>Name</th>
                 <th>Budget</th>
                 <th>Shipping</th>
-                <th>WhatsApp</th>
-                <th>Time</th>
+                <th>Customer WhatsApp</th>
+                <th>Order Time</th>
             </tr>
         </thead>
         <tbody id="orderListBody"></tbody>
@@ -228,9 +228,13 @@
 
 <div class="modal" id="successModal">
     <div class="modal-content">
-        <h3>Submit Success!</h3>
-        <p>We will contact you very soon on WhatsApp</p>
-        <a href="https://wa.me/2347031182775" target="_blank" class="btn-wa">Chat Now</a>
+        <h3>Submit Success !</h3>
+        <div class="tip-text">
+            Please send the product image you uploaded<br>
+            to our WhatsApp manually<br>
+            Thank you !
+        </div>
+        <a href="https://wa.me/2347031182775" target="_blank" class="btn-wa">Open WhatsApp Now</a>
         <br>
         <button style="margin-top:15px;padding:8px 20px;border-radius:6px;border:none;" onclick="closeModal()">Close</button>
     </div>
@@ -238,6 +242,8 @@
 
 <script>
     const adminPwd = "123456";
+    // 你的WhatsApp号码
+    const MY_WA_NUMBER = "2347031182775";
     let imgBase64 = "";
 
     function getOrderList(){
@@ -294,7 +300,7 @@
         document.getElementById("orderListBody").innerHTML = html;
     }
 
-    // 图片预览
+    // 上传图片预览
     function showImgPreview(e){
         let file = e.target.files[0];
         if(!file) return;
@@ -348,15 +354,29 @@
         let remark = document.getElementById("remarkInput").value.trim();
         let wa = document.getElementById("waInput").value.trim();
 
+        // 保存订单到后台
         let orderData = {
             link, name, price, ship, remark, wa,
             time:new Date().toLocaleString()
         };
         saveOrder(orderData);
 
-        let msg = `New Pre-Order%0ALink:${link}%0AName:${name}%0ABudget:${price} NGN%0AShipping:${ship}%0ARemark:${remark}%0ACustomer WhatsApp:${wa}`;
-        window.open(`https://wa.me/2347031182775?text=${msg}`,"_blank");
+        // 发给你的WhatsApp 清爽文字模板
+        let orderMsg = `New Customer Order
+-------------------
+Product Link: ${link}
+Product Name: ${name}
+Budget: ${price} NGN
+Shipping: ${ship}
+Remark: ${remark||"None"}
+Customer WhatsApp: ${wa}
+Order Time: ${new Date().toLocaleString()}`;
 
+        // 自动跳转WhatsApp 填好文字
+        let waUrl = `https://wa.me/${MY_WA_NUMBER}?text=${encodeURIComponent(orderMsg)}`;
+        window.open(waUrl, "_blank");
+
+        // 弹出提示：让客户手动发图片
         document.getElementById("successModal").style.display = "flex";
     }
 
